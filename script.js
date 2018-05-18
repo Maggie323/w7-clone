@@ -13,12 +13,16 @@ google.charts.load('current', {'packages':['corechart', 'bar', 'timeline']});
 //google.charts.setOnLoadCallback(drawDonationChart);
 google.charts.setOnLoadCallback(drawStudyBar);
 
+//Onclick for button
 //this is triggered with the <button> in HTML
 function showTimelineChart(){
-	drawStudyTimeline()
+	//get color from input, pass to draw chart function
+	//TODO: validate that it's a legit color string
+	let color = document.getElementById("color").value
+	drawStudyTimeline(color)
 }
 
-function drawStudyTimeline(){
+function drawStudyTimeline(color){
  			var container = document.getElementById('study-timeline');
       var chart = new google.visualization.Timeline(container);
       var dataTable = new google.visualization.DataTable();
@@ -29,11 +33,14 @@ function drawStudyTimeline(){
       dataTable.addRows([
         ['General Ed', new Date(2018, 8, 1), new Date(2019, 4, 1)],
 				['Choose Mjor', new Date(2019, 5, 1), new Date(2019, 7, 1)],
-        ['Choose Mjr Clss', new Date(2019, 8, 1), new Date(2020, 4, 1)],
+        ['2 Mjr Clss', new Date(2019, 8, 1), new Date(2020, 4, 1)],
         ['12 Mjr Clss',  new Date(2019, 8, 1), new Date(2022, 4, 1)]
 			]);
+				var options = {
+					timeline: {singleColor: color},
+				};
 
-        chart.draw(dataTable);
+        chart.draw(dataTable, options);
 }
 
 function drawStudyBar(){
