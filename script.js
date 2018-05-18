@@ -10,10 +10,13 @@ google.charts.load('current', {'packages':['corechart', 'bar', 'timeline']});
 // 4. BE sure al callback functions use different divs to draw in. Add a new div to HTML for each chart. 
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawDonationChart);
-google.charts.setOnLoadCallback(drawStudyTimeline);
+//google.charts.setOnLoadCallback(drawDonationChart);
 google.charts.setOnLoadCallback(drawStudyBar);
 
+//this is triggered with the <button> in HTML
+function showTimelineChart(){
+	drawStudyTimeline()
+}
 
 function drawStudyTimeline(){
  			var container = document.getElementById('study-timeline');
