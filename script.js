@@ -1,7 +1,7 @@
 console.log("let's build some charts!")
 
 // Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['corechart', 'bar']});
 
 //--^Only have to do this once!
 
@@ -22,51 +22,45 @@ google.charts.setOnLoadCallback(drawChart2);
 function drawChart1() {
 
 // Create the data table.
-var data = new google.visualization.DataTable();
-	data.addColumn('string', 'Topping');
-	data.addColumn('number', 'Slices');
-	data.addRows([
-		['Mushrooms', 3],
-		['Banana Peppers', 2],
-		['Hawaiian', 1],
-		['Pepperoni', 2]
-		]);
+ var data = google.visualization.arrayToDataTable([
+          ['Toppings', 'Slices'],
+          ['Mushrooms', 3],
+          ['Banana Peppers', 2],
+	 				['Hawaiian', 1],
+	 				['Pepperoni', 2]
+        ]);
+// Set Chart Options
+ var options = {
+     		chart: {
+           title: 'Kinds of Pizza I ate Last Night',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+//Instantiate and draw our chart, passing in some options
+ var chart = new google.charts.Bar(document.getElementById('chart_div1'));
 
-// Set chart options
-var options = {'title':'What Kinds of Pizza I Ate Last Night',
-							 'width':500,
-							 'height':500,
-							 'legend': 'left',
-							 'is3D':true
-							};
-
-// Instantiate and draw our chart, passing in some options.
-var chart = new 						   google.visualization.PieChart(document.getElementById('chart_div1'));
-	chart.draw(data, options);
-}
+ chart.draw(data, google.charts.Bar.convertOptions(options));
+ }
 
 function drawChart2() {
 
 // Create the data table.
-var data = new google.visualization.DataTable();
-	data.addColumn('string', 'Topping');
-	data.addColumn('number', 'Slices');
-	data.addRows([
-		['Mushrooms', 3],
-		['Banana Peppers', 2],
-		['Hawaiian', 1],
-		['Pepperoni', 2]
-		]);
+ var data = google.visualization.arrayToDataTable([
+          ['Toppings', 'Slices'],
+          ['Mushrooms', 3],
+          ['Banana Peppers', 2],
+	 				['Hawaiian', 1],
+	 				['Pepperoni', 2]
+        ]);
+// Set Chart Options
+ var options = {
+     		chart: {
+           title: 'Kinds of Pizza I ate Last Night',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+//Instantiate and draw our chart, passing in some options
+ var chart = new google.charts.Bar(document.getElementById('chart_div2'));
 
-// Set chart options
-var options = {'title':'What Kinds of Pizza I Ate Last Night',
-							 'width':500,
-							 'height':500,
-							 'legend': 'left',
-							 'is3D':true
-							};
-
-// Instantiate and draw our chart, passing in some options.
-var chart = new 						   google.visualization.PieChart(document.getElementById('chart_div2'));
-	chart.draw(data, options);
-}
+ chart.draw(data, google.charts.Bar.convertOptions(options));
+ }
